@@ -15,9 +15,12 @@ endfunc "}}}
 func! pummode#map(modes, options, remap_p, lhs, rhs) "{{{
     for m in split(a:modes, '\zs')
         if !s:is_available_mode(m)
-            " TODO message?
+            echohl WarningMsg
+            echomsg printf("mode '%s' is not supported.", m)
+            echohl None
             continue
         endif
+
         call s:do_map(m, a:options, a:remap_p, a:lhs, a:rhs)
     endfor
 endfunc "}}}
