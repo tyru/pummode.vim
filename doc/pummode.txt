@@ -1,3 +1,5 @@
+*pummode.txt* *pummode*
+
 Name: pummode
 Version: 0.0.0
 Author:  tyru <tyru.exe@gmail.com>
@@ -14,3 +16,108 @@ NEW BSD LICENSE {{{
 
   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 }}}
+
+==============================================================================
+CONTENT							*pummode-contents* {{{
+
+Usage						|pummode-usage|
+Interface					|pummode-interface|
+  Functions					|pummode-functions|
+  Commands					|pummode-commands|
+TODO						|pummode-todo|
+Changelog					|pummode-changelog|
+
+}}}
+==============================================================================
+Usage							*pummode-usage* {{{
+
+	call pummode#map('i', '', 0, 'j', '<C-n>')
+	call pummode#map('i', '', 0, 'k', '<C-p>')
+	call pummode#map('i', '', 0, '<CR>', '<C-y>')
+
+}}}
+==============================================================================
+Interface						*pummode-interface* {{{
+------------------------------------------------------------------------------
+Functions						*pummode-functions* {{{
+
+pummode#load()					*pummode#load()*
+			Load this plugin if it is not loaded yet.  Otherwise,
+			does nothing.  Call this function to ensure that
+			|pummode-commands| are defined before you use one of
+			them, especially, in your |vimrc|.
+
+pummode#map({modes}, {options}, {remap-p}, {lhs}, {rhs})
+
+			{modes}
+				String.  Each character means one or more
+				modes to define the given key mapping.
+				All supported characters are:
+
+				Char	Meaning ~
+				i		Map as |:imap|.
+				l		Map as |:lmap|.
+
+			{options}
+				String.  Each character means one of
+				|:map-arguments|.  The meanings of characters
+				are as follows:
+
+				Char	Meaning ~
+				b	<buffer>
+				s	<silent>
+				u	<unique>
+
+				Other |:map-arguments| are not supported for
+				pummode key mappings.
+
+				Note that the meaning of <unique> is a bit
+				differed as follows:
+
+				- If a key in {lhs} is already mapped to
+				  something other than a part of
+				  |pummode-key-mapping|, an error will be
+				  raised and defining of this mapping will be
+				  aborted.
+
+				- If {lhs} is already mapped to another
+				  |pummode-key-mapping|, an error will be
+				  raised and defining of this mapping will be
+				  aborted.
+
+			{remap-p}
+				Number as a boolean.  True means that {rhs}
+				can be remapped, false means {rhs} cannot be
+				remapped[
+
+			{lhs}
+				String.  This value must contain two or more
+				keys.  Special keys such as <C-u> must be
+				escaped with < and >, i.e., use '<C-u>' not
+				"\<C-u>".
+
+			{rhs}
+				String.
+
+}}}
+------------------------------------------------------------------------------
+Commands						*pummode-commands* {{{
+
+Not implemented yet.
+
+}}}
+}}}
+==============================================================================
+TODO							*pummode-todo* {{{
+
+- Command macro for pummode#map().
+
+}}}
+==============================================================================
+Changelog						*pummode-changelog* {{{
+
+See git-log and www.vim.org release notes :)
+
+}}}
+==============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl:noet:fen:fdm=marker:
