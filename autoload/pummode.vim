@@ -27,14 +27,6 @@ endfunc "}}}
 
 
 " Utilities
-func! s:warn(msg) "{{{
-    echohl WarningMsg
-    echomsg a:msg
-    echohl None
-endfunc "}}}
-func! s:warnf(fmt, ...) "{{{
-    call s:warn(call('printf', [a:fmt] + a:000))
-endfunc "}}}
 func! s:stringf(fmt, ...) "{{{
     return call('printf', [a:fmt] + map(copy(a:000), 'string(v:val)'))
 endfunc "}}}
