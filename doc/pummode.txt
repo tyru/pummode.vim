@@ -112,6 +112,9 @@ TODO							*pummode-todo* {{{
 
 - Command macro for pummode#map().
 
+By the way, what is "pum" ?
+Please email me if you know about this :)
+
 }}}
 ==============================================================================
 Changelog						*pummode-changelog* {{{
